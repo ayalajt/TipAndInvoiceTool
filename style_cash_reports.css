@@ -1,0 +1,224 @@
+#cash_reports {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+.date-item-cash {
+    cursor: pointer;
+    background-color: #d3d3d4;
+    margin: 0;
+    width: 100%;
+    min-height: 40px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    pointer-events: all;
+}
+
+.date-item-cash:hover {
+    background-color: #a5a5a5;
+}
+
+.date-item-cash.date-selected-cash {
+    background-color: #858585;
+    color: white;
+    font-weight: bold;
+}
+
+.date-item-cash.date-select-total {
+    background-color: #858585;
+    color: white;
+    font-weight: bold;
+}
+
+.date-item-cash.date-add-cash {
+    background-color: #858585;
+    color: white;
+    font-weight: bold;
+}
+
+.history-cash-reports {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.cash-report-form {
+    margin-top: -55px;
+    display: none;
+    width: 40%;
+    height: 55%;
+    background-color: #ececec;
+    flex-direction: column;
+    box-shadow: 0 0 5px;
+    position: relative;
+}
+
+.cash-form-row {
+    display: flex;
+    width: 100%;
+    height: 33.3%;
+    font-size: 22px;
+    flex-direction: column;
+}
+
+.cash-header {
+    font-weight: bold;
+    margin-left: 25px;
+}
+
+.cash-value {
+    margin-right: 25px;
+}
+
+.toast-value {
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    width: 82px;
+    color: black;
+    margin-right: 23px;
+    padding: 0;
+    text-align: right;
+    font-weight: normal;
+    z-index: 20;
+}
+
+#clear-select-cash-total {
+    margin-right: 5px;
+}
+
+.main-row {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.sub-row {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    justify-content: center;
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    left: 0;
+}
+
+#lunch-day-tip,
+#dinner-day-tip {
+    margin-left: 5px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.sub-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.form-button.inline.select {
+    width: 130px;
+}
+
+.total-options.cash {
+    height: 15%;
+    width: 100%;
+}
+
+#total-select-msg-cash {
+    font-size: 22px;
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin: 0;
+    top: 0;
+    width: 100%;
+    height: 85px;
+}
+
+.cash-reports-main h1 {
+    margin-bottom: 5px;
+}
+
+.form-button.force-save {
+    width: 60px;
+    height: 35px;
+    font-size: 12px;
+    position: absolute;
+    right: 0;
+    top: -40px;
+}
+
+#calculate-select-cash-total,
+#clear-select-cash-total,
+#reset-select-cash-total {
+    display: none;
+}
+
+.login-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 350px;
+    background-color: #f6f7fc;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 5px;
+    flex-direction: column;
+}
+
+.cash-reports-main {
+    display: none;
+}
+
+.form-button.login {
+    position: absolute;
+    bottom: 35px;
+}
+
+.toast-container {
+    background-color: red;
+    position: relative;
+    z-index: 500;
+}
+
+[contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+#username-row {
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.cash-reports-main {
+    flex-direction: column;
+}
+
+#cash-username,
+#cash-password {
+    color: black;
+}

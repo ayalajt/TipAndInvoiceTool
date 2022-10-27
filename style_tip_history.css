@@ -1,0 +1,179 @@
+#total_calculator {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+.history-container {
+    margin-top: 20px;
+    width: 900px;
+    height: 500px;
+    background-color: var(--form-color);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 5px;
+    overflow-y: auto;
+}
+
+.history-list {
+    width: 20%;
+    height: 100%;
+    background-color: #d3d3d4;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.history-table-container {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.manager-container {
+    display: none;
+    font-size: 18px;
+    align-items: center;
+    z-index: 1;
+}
+
+.stack-layout {
+    position: relative;
+    display: flex;
+    height: 10%;
+    width: 500px;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.manager-header {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.total-options {
+    background-color: #d3d3d4;
+    height: 15%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+}
+
+.buttons-container-total.save {
+    padding: 0;
+    width: auto;
+    margin: 0;
+}
+
+.form-button.total.save {
+    margin-left: 5px;
+}
+
+#total-select-msg {
+    font-size: 22px;
+    font-weight: bold;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin: 0;
+    top: 20px;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+}
+
+#total_calculator h1 {
+    margin-bottom: 5px;
+}
+
+.form-button.total {
+    width: 150px;
+}
+
+.tip-history-info {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.lunch-dinner-buttons-container {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttons-container-total.history {
+    padding: 0;
+}
+
+.cursor-wrapper {
+    cursor: pointer;
+}
+
+.config-buttons {
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 2;
+}
+
+#edit-save-json-button,
+#edit-cancel-json-button {
+    display: none;
+}
+
+#worker-table-history-tbody {
+    border: solid 2px transparent;
+
+}
+
+.table-height {
+    max-height: 316px;
+    display: block;
+    overflow-y: overlay;
+    width: 500px;
+    overflow-x: hidden;
+}
+
+.date-item {
+    cursor: pointer;
+    background-color: #d3d3d4;
+    margin: 0;
+    width: 100%;
+    min-height: 40px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    pointer-events: all;
+}
+
+.date-item:hover {
+    background-color: #a5a5a5;
+}
+
+.date-item.date-selected {
+    background-color: #858585;
+    color: white;
+    font-weight: bold;
+}
+
+.date-item.date-add {
+    background-color: #858585;
+    color: white;
+    font-weight: bold;
+}

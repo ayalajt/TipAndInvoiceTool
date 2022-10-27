@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lolita's Tool</title>
+    <link rel="stylesheet" href="style_tip_calculator.css?v=1.0">
+    <link rel="stylesheet" href="style_tip_history.css?v=1.0">
+    <link rel="stylesheet" href="style_cash_reports.css?v=1.0">
+    <link rel="stylesheet" href="style_invoice.css?v=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+</head>
+
+<body>
+    <div class="login-popup" id="login-popup-calculator">
+        <div class="input-row" id="username-row-calculator">
+            <label for="name">Username</label>
+            <input type="text" id="calc-username" value="">
+        </div>
+        <div class="input-row" id="password-row-calculator">
+            <label for="name">Password</label>
+            <input type="password" id="calc-password" value="">
+        </div>
+        <input type="button" id="calc-login-button" class="form-button login" value="Login">
+    </div>
+    <div class="topnav" id="nav-bar">
+        <div class="hamburger-button" id="open-menu">
+            <img class="close-X" id="close-menu-icon" src="/icons/bars-solid.svg">
+        </div>
+        <div class="site-name">
+            <img class="main-logo" src="/icons/lolitas-logo.png">
+            <p id="nav-title">Lolita's Tip Tool</p>
+        </div>
+        <div class="nav-buttons" id="nav-buttons">
+            <input type="button" id="tab_tip" class="tab active" value="Tip Calculator">
+            <input type="button" id="tab_total" class="tab" value="Tip History">
+            <input type="button" id="tab_cash_reports" class="tab" value="Cash Reports">
+        </div>
+    </div>
+    <div class="page-menus" id="page-menus">
+        <div class="page-option active" id="option-tip-calculator">
+            <img class="page-icon" src="/icons/calculator-solid.svg">
+            <p>Tip Tool</p>
+        </div>
+        <div class="page-option" id="option-invoices">
+            <img class="page-icon" src="/icons/file-invoice-solid.svg">
+            <p>Invoice Tool</p>
+        </div>
+    </div>
+    <div id="alert-msg">
+        <div class="alert-msg-txt-container">
+            <p id="alert-msg-txt"></p>
+        </div>
+        <div class="alert-msg-X">
+            <img class="close-X" id="close-alert" src="/icons/xmark-solid.svg">
+        </div>
+    </div>
+    <div id="cash_reports">
+        <div class="login-popup" id="login-popup">
+            <div class="input-row" id="username-row">
+                <label for="name">Username</label>
+                <input type="text" id="cash-username" value="">
+            </div>
+            <div class="input-row" id="password-row">
+                <label for="name">Password</label>
+                <input type="password" id="cash-password" value="">
+            </div>
+            <input type="button" id="cash-login-button" class="form-button login" value="Login">
+        </div>
+        <div class="cash-reports-main" id="cash-reports-main">
+            <h1>Cash Reports</h1>
+            <div class="history-container">
+                <div class="tip-history-info">
+                    <div class="history-list" id="history-list-cash"></div>
+                    <div class="history-cash-reports" id="history-cash-reports">
+                        <p id="total-select-msg-cash" style="display: none;">Select dates to add together</p>
+                        <div class="cash-report-form" id="cash-form">
+                            <input type="button" class="form-button force-save" id="force-save-button" value="Save">
+                            <div class="cash-form-row">
+                                <div class="main-row">
+                                    <p class="cash-header">Cash Tips:</p>
+                                    <p class="cash-value" id="day-tip-total">0.00</p>
+                                    <div class="sub-row">
+                                        <div class="sub-container">
+                                            <p class="bold">Lunch:</p>
+                                            <p id="lunch-day-tip">0.00</p>
+                                        </div>
+                                        <div class="sub-container">
+                                            <p class="bold">Dinner:</p>
+                                            <p id="dinner-day-tip">0.00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cash-form-row">
+                                <div class="main-row full">
+                                    <p class="cash-header">Toast Cash:</p>
+                                    <input type="text" id="toast-amount" class="toast-value" value="0.00">
+                                </div>
+                            </div>
+                            <div class="cash-form-row">
+                                <div class="main-row full">
+                                    <p class="cash-header">Total:</p>
+                                    <p class="cash-value" id="total-cash-amount">0.00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="total-options cash" id="select-total-options-cash" style="display: flex">
+                            <input type="button" id="select-cash-total" class="form-button inline select"
+                                value="Select Dates">
+                            <input type="button" id="clear-select-cash-total" class="form-button inline" value="Clear">
+                            <input type="button" id="calculate-select-cash-total" class="form-button inline"
+                                value="Calculate">
+                            <input type="button" id="reset-select-cash-total" class="form-button inline select"
+                                value="Reset">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tip_calculator">
+        <div class="popup-bg" id="worker-popup">
+            <div class="worker-popup">
+                <form class="main-form">
+                    <div class="input-row button">
+                        <label for="name">Worker Name</label>
+                        <input type="text" id="name" value="Worker 1">
+                        <div class="select-dropdown-container" id="select-worker-container">
+                            <div class="dropdown-side-button-container">
+                                <div class="dropdown-side-button" id="select-worker-button"
+                                    title="Select from common Workers">
+                                    <img class="dropdown-icon" src="/icons/caret-down-solid.svg">
+                                </div>
+                            </div>
+                            <div class="dropdown-options-container" id="worker-options">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-row button">
+                        <div class="late-button-container" id="late-button-container">
+                            <div class="late-button" id="late-button" title="Late?">
+                                <img class="late-icon" id="late-icon" src="/icons/delay-icon-solid.svg">
+                            </div>
+                        </div>
+                        <label for="position">Position</label>
+                        <div class="styled-dropdown-container">
+                            <div class="styled-dropdown-input" id="position-dropdown-input">
+                                <img class="dropdown-inline-icon" id="position-dropdown-arrow"
+                                    src="/icons/angle-down-solid.svg">
+                                <p id="current-position">Select</p>
+                            </div>
+                            <div class="styled-dropdown-options-container" id="position-dropdown-options">
+                                <div class="styled-dropdown-option position">
+                                    <p class="position-input">Server</p>
+                                </div>
+                                <div class="styled-dropdown-option position">
+                                    <p class="position-input">Bartender</p>
+                                </div>
+                                <div class="styled-dropdown-option position">
+                                    <p class="position-input">Barback</p>
+                                </div>
+                                <div class="styled-dropdown-option position">
+                                    <p class="position-input">Expo</p>
+                                </div>
+                                <div class="styled-dropdown-option position">
+                                    <p class="position-input">Dishwasher</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-row button" id="input-row-time">
+                        <label for="input-hours">Start/End Time</label>
+                        <div class="input-hours">
+                            <input type="time" class="time-input-form" id="start-time" value="">
+                            <input type="time" class="time-input-form" id="end-time" value="">
+                        </div>
+                        <div class="select-dropdown-container shifts" id="select-shift-container">
+                            <div class="dropdown-side-button-container">
+                                <div class="dropdown-side-button" id="select-shift-button"
+                                    title="Select from common Shifts">
+                                    <img class="dropdown-icon" src="/icons/caret-down-solid.svg">
+                                </div>
+                            </div>
+                            <div class="dropdown-options-container" id="shift-options">
+                                <div class="styled-dropdown-option shift">
+                                    <p class="shift-input">10:30 AM - 02:30 PM</p>
+                                </div>
+                                <div class="styled-dropdown-option shift">
+                                    <p class="shift-input">04:30 PM - 11:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-row" id="input-row-tips">
+                        <label for="tips">Tips</label>
+                        <input type="number" id="tips" value="0.00">
+                    </div>
+                    <div class="buttons-container-main">
+                        <input type="button" id="cancel-worker-button" class="form-button" value="Cancel">
+                        <input type="button" id="add-worker-button" class="form-button" type="submit"
+                            value="Add Worker">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="flex-1" id="flex-1">
+            <h1 class="title">Tip Calculator</h1>
+            <div class="upload-button-container">
+                <input type="button" class="form-button upload" id="upload-button-fake" value="Upload"
+                    onclick="document.getElementById('upload-button').click();" />
+                <input type="file" multiple accept="application/pdf" class="form-button upload" id="upload-button"
+                    style="display: none;">
+            </div>
+        </div>
+
+        <div class="shadow">
+            <div class="flex-2" id="flex-2">
+                <div class="input-row button">
+                    <label for="manager">Manager</label>
+                    <input type="text" id="manager" onfocus="" value="Full Name">
+                    <div class="select-dropdown-container" id="select-manager-container">
+                        <div class="dropdown-side-button-container">
+                            <div class="dropdown-side-button" id="select-manager-button"
+                                title="Select from common Managers">
+                                <img class="dropdown-icon" src="/icons/caret-down-solid.svg">
+                            </div>
+                        </div>
+                        <div class="dropdown-options-container" id="manager-options">
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row button">
+                    <label for="date">Date</label>
+                    <input type="text" id="date" value="MM-DD-YYYY">
+                    <div class="input-side-button" id="today-date-button" title="Add today's date">
+                        <img class="calendar-icon" src="/icons/calendar-check-solid.svg">
+                    </div>
+                </div>
+                <div class="input-row">
+                    <label for="time">Time</label>
+                    <div class="styled-dropdown-container">
+                        <div class="styled-dropdown-input" id="time-dropdown-input">
+                            <img class="dropdown-inline-icon" id="time-dropdown-arrow"
+                                src="/icons/angle-down-solid.svg">
+                            <p id="current-time">Select</p>
+                        </div>
+                        <div class="styled-dropdown-options-container" id="time-dropdown-options">
+                            <div class="styled-dropdown-option time">
+                                <p class="time-input">Lunch</p>
+                            </div>
+                            <div class="styled-dropdown-option time">
+                                <p class="time-input">Dinner</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-row">
+                    <label for="cash-tips">Cash Tips</label>
+                    <input type="number" id="cash-tips" value="0.00">
+                </div>
+                <div class="input-row">
+                    <label for="food-sales">Food Sales</label>
+                    <input type="number" id="food-sales" value="0.00">
+                </div>
+            </div>
+
+            <div class="flex-3" id="flex-3">
+                <div class="arrow-container">
+                    <img class="arrow" src="/icons/left-arrow.svg" id="left-arrow">
+                </div>
+                <div class="table-container">
+                    <p class="table-header" id="table-header">Worker Table</p>
+                    <div class="worker-table-container" id="worker-table-container">
+                        <table id="worker-table" class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th class="header first" id="table-hed">Worker</th>
+                                    <th class="header">Position</th>
+                                    <th class="header">Hours</th>
+                                    <th class="header last">Tips</th>
+                                </tr>
+                            </thead>
+                            <tbody class="worker-tbody" id="worker-tbody">
+                                <tr class="empty-row">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td>
+                                        <div class="option">
+                                            <p onclick="openPopup()">+</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="empty-row">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="empty-row">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="empty-row">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="empty-row">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="empty-row">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="empty-row">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                                <tr class="empty-row">
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table id="worker-table-results" class="styled-table" style="display:none;">
+                            <thead>
+                                <tr id="results-thead">
+                                    <th class="header first">Worker</th>
+                                    <th class="header">Position</th>
+                                    <th class="header">Wage</th>
+                                    <th class="header last">Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-tbody"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="arrow-container">
+                    <img class="arrow" src="/icons/right-arrow.svg" id="right-arrow">
+                </div>
+            </div>
+            <div class="flex-4" id="flex-4">
+                <div class="buttons-container">
+                    <div id="calculate-button-container" class="save-button-container">
+                        <input type="button" id="clear-all-button" class="form-button" value="Clear All">
+                        <input type="button" id="calculate-button" class="form-button" value="Calculate">
+                    </div>
+                    <div id="save-button-container" class="save-button-container results" style="display: none;">
+                        <input type="button" id="reedit-button" class="form-button" value="Re-Edit Table">
+                        <input type="button" id="restart-button" class="form-button" value="Restart">
+                        <input type="button" id="save-button" class="form-button" value="Save To PDF">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="total_calculator">
+        <h1>Tip History</h1>
+        <div id="history-container" class="history-container">
+            <div class="tip-history-info">
+                <div class="history-list" id="history-list">
+                </div>
+                <div class="history-table-container" id="history-table-container">
+                    <p id="total-select-msg" style="display: none;">Select dates to add together</p>
+                    <div class="lunch-dinner-buttons-container" id="lunch-dinner-buttons-container">
+                        <div id="lunch-cursor-wrapper" class="cursor-wrapper">
+                            <input type="button" id="view-lunch-button" class="form-button time" value="Lunch">
+                        </div>
+                        <div id="dinner-cursor-wrapper" class="cursor-wrapper">
+                            <input type="button" id="view-dinner-button" class="form-button time" value="Dinner">
+                        </div>
+                    </div>
+                    <div class="stack-layout">
+                        <div class="manager-container" id="manager-container">
+                            <p class="manager-header" id="manager-header">Closing Manager:</p>
+                            <p id="manager-text"></p>
+                        </div>
+                        <div class="config-buttons" id="config-buttons">
+                            <input type="button" id="edit-json-button" class="form-button config" value="Edit">
+                            <input type="button" id="delete-json-button" class="form-button config" value="Delete">
+                            <input type="button" id="edit-cancel-json-button" class="form-button config" value="Cancel">
+                            <input type="button" id="edit-save-json-button" class="form-button config" value="Save">
+                        </div>
+                    </div>
+                    <div class="table-height" id="history-table-height-container">
+                        <table id="worker-table-history" style="display:none;" class="styled-table">
+                            <thead id="worker-table-history-thead">
+                                <tr>
+                                    <th class="header first">Worker</th>
+                                    <th class="header">Position</th>
+                                    <th class="header">Wage</th>
+                                    <th class="header last">Points</th>
+                                </tr>
+                            </thead>
+                            <tbody id="worker-table-history-tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="total-options history" id="total-options">
+                        <input type="button" id="total-calculate-button" class="form-button total"
+                            value="Calculate Total">
+                        <div class="buttons-container-total save" id="save-history-button-container"
+                            style="display: none;">
+                            <input type="button" id="save-button-history" class="form-button total save"
+                                value="Save To PDF">
+                        </div>
+                        <div class="buttons-container-total history" id="total-button-container" style="display: none;">
+                            <input type="button" id="cancel-button" class="form-button" type="submit" value="Cancel">
+                            <input type="button" id="calculate-actual-total-button" class="form-button"
+                                value="Calculate">
+                        </div>
+                        <div class="buttons-container-total history" id="view-history-button-container"
+                            style="display: none;">
+                            <input type="button" id="view-history-button" class="form-button total"
+                                value="View History">
+                            <input type="button" id="save-button-total" class="form-button total" value="Save To PDF">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="invoice_tool">
+        <div id="invoice_alert-msg">
+            <div class="alert-msg-txt-container">
+                <p id="invoice_alert-msg-txt">Successfully Saved!</p>
+            </div>
+            <div class="alert-msg-X">
+                <img class="close-X" id="invoice_close-alert" src="/icons/xmark-solid.svg">
+            </div>
+        </div>
+        <div class="popup-bg" id="invoice_submit-invoice-page">
+            <form class="invoice_main-form">
+                <div class="inputs">
+                    <div class="invoice_input-row">
+                        <label for="input-date">Date</label>
+                        <input class="input-invoice-value" type="text" id="invoice_input-date" value="MM-DD-YYYY">
+                        <div class="invoice_input-side-button" id="invoice_today-date-button" title="Add today's date">
+                            <img class="calendar-icon" src="/icons/calendar-check-solid.svg">
+                        </div>
+                    </div>
+                    <div class="invoice_input-row">
+                        <label for="input-delivery">Delivery Type</label>
+                        <div class="styled-dropdown-container" id="invoice_delivery-dropdown-container">
+                            <div class="styled-dropdown-input" id="invoice_delivery-dropdown-input">
+                                <img class="dropdown-inline-icon" id="invoice_delivery-dropdown-arrow"
+                                    src="/icons/angle-down-solid.svg">
+                                <p id="invoice_input-delivery" class="input-invoice-value">Select</p>
+                            </div>
+                            <div class="invoice_styled-dropdown-options-container"
+                                id="invoice_delivery-dropdown-options">
+                                <div class="styled-dropdown-option">
+                                    <p class="delivery-input">Kitchen</p>
+                                </div>
+                                <div class="styled-dropdown-option">
+                                    <p class="delivery-input">Bar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice_input-row">
+                        <label for="input-provider">Provider</label>
+                        <input class="input-invoice-value" type="text" id="invoice_provider-dropdown"
+                            name="input-provider" value="Name">
+                        <div class="invoice_select-dropdown-container" id="invoice_select-provider-container">
+                            <div class="dropdown-side-button-container" id="invoice_dropdown-side-button-container">
+                                <div class="invoice_dropdown-side-button" id="invoice_select-provider-button"
+                                    title="Select from common Providers">
+                                    <img class="dropdown-icon" src="/icons/caret-down-solid.svg">
+                                </div>
+                            </div>
+                            <div class="invoice_styled-dropdown-options-container" id="invoice_provider-options">
+                                <div class="styled-dropdown-option">
+                                    <p class="provider-input">Rudy's</p>
+                                </div>
+                                <div class="styled-dropdown-option">
+                                    <p class="provider-input">Reliant</p>
+                                </div>
+                                <div class="styled-dropdown-option">
+                                    <p class="provider-input">Concept</p>
+                                </div>
+                                <div class="styled-dropdown-option">
+                                    <p class="provider-input">Sysco</p>
+                                </div>
+                                <div class="styled-dropdown-option">
+                                    <p class="provider-input">PFG</p>
+                                </div>
+                                <div class="styled-dropdown-option">
+                                    <p class="provider-input">Domestic</p>
+                                </div>
+                                <div class="styled-dropdown-option">
+                                    <p class="provider-input">Sam</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice_input-row">
+                        <label for="input-cost">Cost</label>
+                        <input class="input-invoice-value" type="number" id="invoice_input-cost" value="0.00">
+                    </div>
+                </div>
+                <div class="invoice_buttons-container-main">
+                    <input type="button" id="invoice_cancel-invoice-button" class="invoice_form-button" value="Cancel">
+                    <input type="button" id="invoice_submit-button" class="invoice_form-button" type="submit"
+                        value="Submit">
+                </div>
+            </form>
+        </div>
+        <div class="main-container" id="invoice_history-invoice-page">
+            <h1 class="invoice_title">Invoice Tool</h1>
+            <div class="invoice_flex-2 history">
+                <div class="invoice_history-container">
+                    <input type="button" id="invoice_new-invoice-button" class="invoice_form-button new-invoice"
+                        value="Add New Invoice       +">
+                    <div class="invoice_options-container">
+                        <p id="invoice_total-select-msg"></p>
+                        <div class="invoice_total-options" id="invoice_total-options">
+                            <div class="option-row" id="invoice_default-options-row">
+                                <p> Calculate Total for </p>
+
+                                <div class="styled-dropdown-container" id="invoice_type-dropdown-container">
+                                    <div class="styled-dropdown-input" id="invoice_type-dropdown-input">
+                                        <img class="dropdown-inline-icon" id="invoice_type-dropdown-arrow"
+                                            src="/icons/angle-down-solid.svg">
+                                        <p id="invoice_input-type">All</p>
+                                    </div>
+                                    <div class="invoice_styled-dropdown-options-container"
+                                        id="invoice_type-dropdown-options">
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">All</p>
+                                        </div>
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">Kitchen</p>
+                                        </div>
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">Bar</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>invoices during</p>
+                                <div class="styled-dropdown-container" id="invoice_time-dropdown-container">
+                                    <div class="styled-dropdown-input" id="invoice_time-dropdown-input">
+                                        <img class="dropdown-inline-icon" id="invoice_time-dropdown-arrow"
+                                            src="/icons/angle-down-solid.svg">
+                                        <p id="invoice_input-time">This Week</p>
+                                    </div>
+                                    <div class="invoice_styled-dropdown-options-container"
+                                        id="invoice_time-dropdown-options">
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">This Week</p>
+                                        </div>
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">Last Week</p>
+                                        </div>
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">Custom</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="invoice_total-options custom" id="invoice_custom-total-options"
+                                style="display: none">
+                                <p> Calculate Total for </p>
+
+                                <div class="styled-dropdown-container" id="invoice_type-dropdown-container-custom">
+                                    <div class="styled-dropdown-input" id="invoice_type-dropdown-input-custom">
+                                        <img class="dropdown-inline-icon" id="invoice_type-dropdown-arrow-custom"
+                                            src="/icons/angle-down-solid.svg">
+                                        <p id="invoice_input-type-custom">All</p>
+                                    </div>
+                                    <div class="invoice_styled-dropdown-options-container"
+                                        id="invoice_type-dropdown-options-custom">
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">All</p>
+                                        </div>
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">Kitchen</p>
+                                        </div>
+                                        <div class="styled-dropdown-option">
+                                            <p class="type-input">Bar</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>invoices during</p>
+                                <input type="text" class="custom-input" id="invoice_custom-start-date"
+                                    value="MM-DD-YYYY">
+                                <p>through</p>
+                                <input type="text" class="custom-input" id="invoice_custom-end-date" value="MM-DD-YYYY">
+                            </div>
+
+                            <div class="invoice_buttons-float-container">
+                                <div class="invoice_buttons" id="invoice_default-options-buttons">
+                                    <input type="button" id="invoice_calculate-total-button"
+                                        class="invoice_form-button option" value="Calculate">
+                                    <input type="button" id="invoice_select-total-button"
+                                        class="invoice_form-button option" value="Select">
+                                </div>
+
+                                <div class="invoice_buttons" id="invoice_select-options-buttons">
+                                    <input type="button" id="invoice_calculate-total-button-select"
+                                        class="invoice_form-button option" value="Calculate">
+                                    <input type="button" id="invoice_clear-total-button-select"
+                                        class="invoice_form-button option" value="Cancel">
+                                </div>
+
+                                <div class="invoice_buttons" id="invoice_custom-options-buttons">
+                                    <input type="button" id="invoice_calculate-total-button-custom"
+                                        class="invoice_form-button option" value="Calculate">
+                                    <input type="button" id="invoice_clear-total-button-custom"
+                                        class="invoice_form-button option" value="Cancel">
+                                </div>
+
+                                <div class="invoice_buttons" id="invoice_clear-options-button">
+                                    <input type="button" id="invoice_clear-total-button"
+                                        class="invoice_form-button option" value="Reset">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="invoice-and-dates-container">
+                        <div class="dates-container" id="invoice_dates-container"></div>
+                        <div class="invoices-container" id="invoice_invoices-container">
+                            <div class="invoices-main" id="invoice_invoices-main">
+                                <div class="invoice-table-container">
+                                    <table id="invoice_invoice-table" class="invoice_styled-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="header first">Invoice #</th>
+                                                <th class="header">Type</th>
+                                                <th class="header">Provider</th>
+                                                <th class="header last" id="invoice_cost-header-table">Cost
+                                                    <img class="delete-icon" id="invoice_delete-invoices-icon"
+                                                        src="/icons/trash-solid.svg">
+                                                    <img class="save-icon" id="invoice_print-invoices-icon"
+                                                        src="/icons/file-arrow-down-solid.svg">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice-tbody" id="invoice_invoice-tbody">
+                                        </tbody>
+                                    </table>
+
+                                    <table id="invoice_invoice-total-table" class="invoice_styled-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="header first">Date</th>
+                                                <th class="header">Invoice #</th>
+                                                <th class="header">Type</th>
+                                                <th class="header">Provider</th>
+                                                <th class="header last">Cost
+                                                    <img class="save-icon" id="invoice_print-total-icon"
+                                                        src="/icons/file-arrow-down-solid.svg">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="invoice-tbody" id="invoice_invoice-total-tbody">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="invoices-cost-container" id="invoice_invoices-cost-container">
+                                <div class="invoices-cost-value">
+                                    <p class="value-header" id="invoice_cost-header">Cost:</p>
+                                    <p class="input-value" id="invoice_cost-value">0.00</p>
+                                </div>
+                                <div class="invoices-sales-value">
+                                    <p class="value-header" id="invoice_sales-header">Sales:</p>
+                                    <p class="input-value" id="invoice_sales-value">0.00</p>
+                                    <div id="invoice_edit-sales-button-container">
+                                        <div id="invoice_edit-sales" class="invoice_form-button edit">
+                                            <img class="invoice_sales-icon" src="/icons/pen-solid.svg">
+                                        </div>
+                                    </div>
+                                    <div id="invoice_cancel-save-sales-container" class="invoice_sale-button-container"
+                                        style="display: none">
+                                        <div id="invoice_cancel-sales" class="invoice_form-button edit">
+                                            <img class="invoice_sales-icon" src="/icons/xmark-solid.svg">
+                                        </div>
+                                        <div id="invoice_save-sales" class="invoice_form-button edit">
+                                            <img class="invoice_sales-icon" src="/icons/floppy-disk-solid.svg">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="invoices-difference-value">
+                                    <p class="value-header" id="invoice_difference-header">Difference:</p>
+                                    <p class="input-value" id="invoice_difference-value">0.00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable@3.5.25/dist/jspdf.plugin.autotable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="tip_calculator.js?v=1.0"></script>
+    <script src="tip_history.js?v=1.0"></script>
+    <script src="cash_reports.js?v=1.0"></script>
+    <script src="test_tip_calculator.js"></script>
+    <script src="invoices.js?v=1.0"></script>
+</body>
+
+</html>
