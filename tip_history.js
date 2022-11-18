@@ -434,6 +434,7 @@ function printTableToHistory(array) {
         }
     }
 
+
     const tableResultsSize = document.getElementById("worker-table-history-tbody").rows.length;
     if (tableResultsSize < 9) {
         for (var i = tableResultsSize; i < 8; i++) {
@@ -446,7 +447,12 @@ function printTableToHistory(array) {
             </tr>`;
             document.getElementById("worker-table-history-tbody").insertAdjacentHTML("beforeend", html);
         }
-
+    }
+    else {
+        let lateIcons = tableBody.querySelectorAll(".table-icon-container");
+        for (var i = 0; i < lateIcons.length; i++) {
+            lateIcons[i].classList.add("offset");
+        }
     }
 }
 

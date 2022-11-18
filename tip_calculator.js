@@ -600,16 +600,37 @@ function addWorker(element) {
                 startTime = validateTime(startTime);
                 endTime = validateTime(endTime);
 
+                let startHour = startTime.split(":")[0];
+                let endHour = endTime.split(":")[0];
+                let timeToMidnight = 0;
+                let PMtoAM = false;
+
+                /* If the start time is in PM and the end time is in AM, it will be after midnight,
+                so calculate the difference from the start time to midnight, set the start time to midnight,
+                calculate the time from midnight to end time, then add these 2 values together */
+                if (startHour > 12 && endHour < 12) {
+                    let startTimeString = "1970-01-01T" + startTime + ":00"
+                    let midnightString = "1970-01-01T24:00:00";
+                    let midnightDate = new Date(midnightString)
+                    let startDate = new Date(startTimeString)
+                    timeToMidnight = (midnightDate - startDate) / 1000 / 60 / 60;
+                    timeToMidnight = timeToMidnight.toFixed(2);
+                    startTime = "00:00";
+                    PMtoAM = true;
+                }
+
                 let endTimeString = "1970-01-01T" + endTime + ":00"
                 let endDate = new Date(endTimeString)
                 let startTimeString = "1970-01-01T" + startTime + ":00"
-
                 let startDate = new Date(startTimeString)
                 let hours = (endDate - startDate) / 1000 / 60 / 60;
                 if (isNaN(hours)) { alert("ERROR: Please input valid hours. They must be in the format '00:00', including AM or PM if necessary. Examples: 05:30 PM, 01:30 AM, 03:00") }
                 else {
                     if (hours < 0) { hours = hours * -1 }
                     hours = hours.toFixed(2)
+                    
+                    if (PMtoAM) { hours = parseFloat(hours) + parseFloat(timeToMidnight); }
+
                     let tips = inputWorkerTips.value;
                     if (tips === "") { tips = "0.00" }
                     tips = parseFloat(tips).toFixed(2);
@@ -1884,7 +1905,7 @@ function printResults() {
     if (numMonth && day && year) { strNumber = numMonth + "." + day + "." + year }
 
     let pdfName = "Tips.pdf"
-    if (strNumber) { pdfName = strNumber + " Tips.pdf" }
+    if (strNumber) { pdfName = strNumber + " " + timeSelected.innerHTML + " Tips.pdf" }
     doc.save(pdfName);
 }
 
