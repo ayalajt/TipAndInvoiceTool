@@ -691,6 +691,7 @@ function printHistory() {
 
     let strNumber = numMonth + "." + day + "." + year;
 
-    let pdfName = strNumber + " Tips.pdf";
+    let currentTime = document.querySelector(".form-button.time.selected").value;
+    let pdfName = strNumber + " " + currentTime + " Tips.pdf";
     doc.save(pdfName);
 }
