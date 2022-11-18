@@ -608,7 +608,7 @@ function addWorker(element) {
                 /* If the start time is in PM and the end time is in AM, it will be after midnight,
                 so calculate the difference from the start time to midnight, set the start time to midnight,
                 calculate the time from midnight to end time, then add these 2 values together */
-                if (startHour > 12 && endHour < 12) {
+                if (startHour >= 12 && endHour < 12) {
                     let startTimeString = "1970-01-01T" + startTime + ":00"
                     let midnightString = "1970-01-01T24:00:00";
                     let midnightDate = new Date(midnightString)
